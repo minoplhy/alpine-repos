@@ -1,0 +1,67 @@
+# Contributor: Minoplhy <c@3qx.nl>
+maintainer="Minoplhy <c@3qx.nl>"
+pkgname=minoplhy-nginx-allstar
+pkgver=1.27.3
+pkgrel=0
+pkgdesc="Nginx"
+url="https://github.com/minoplhy/deployment"
+arch="x86_64"
+license="MIT"
+depends="
+    mercurial
+    libunwind
+    pcre-dev
+    zlib-dev
+    cmake
+    make
+    libxslt-dev
+    gd-dev
+    openssl-dev
+    perl-dev
+    geoip-dev
+    git
+    g++
+    build-base
+    autoconf
+    automake
+    curl-dev
+    lmdb-dev
+    libtool
+    libxml2-dev
+    yajl-dev
+    pkgconf
+    wget
+    ninja
+    linux-headers
+    sudo
+"
+pkgusers="nginx"
+_grp_ngx="nginx"
+_grp_www="www-data"
+pkggroups="$_grp_ngx $_grp_www"
+install="$pkgname.pre-install"
+subpackages="$pkgname-openrc
+	"
+source="$pkgname-$pkgver.tar.gz::https://github.com/minoplhy/deployment/releases/download/alpine-nginx-release-$pkgver/alpine-nginx-release-$pkgver-allstar.tar.gz
+	$pkgname.initd
+	"
+options="net !check" # check: no test suite
+
+package() {
+    install -D -m 755 "$srcdir"/home/runner/nginx_scriptbox/nginx/objs/nginx "$pkgdir"/usr/sbin/nginx
+    chown root:root "$pkgdir"/usr/sbin/nginx
+    
+    install -d -m 755 "$pkgdir"/lib/nginx/modules
+    install -D -m 755 "$srcdir"/home/runner/nginx_scriptbox/nginx/objs/*.so "$pkgdir"/lib/nginx/modules
+    chown -R root:root "$pkgdir"/lib/nginx/modules
+
+    cp -r "$srcdir"/usr/* "$pkgdir"/usr
+
+	install -D -m 755 "$srcdir"/$pkgname.initd "$pkgdir"/etc/init.d/$pkgname
+    install -d -m 755 "$pkgdir"/var/log/nginx
+	chown $pkgusers:$_grp_ngx "$pkgdir"/var/log/nginx
+}
+
+sha512sums="
+694c4518f051f49e0a94c4cb8feaea86c0478c5ced7068137fc5b3a32d41da91f66f1967bdb13366ff4de2a62b6825225fc607a0d72d0cb3fd7bac2c31775a1e  beszel-0.9.1.tar.gz
+"

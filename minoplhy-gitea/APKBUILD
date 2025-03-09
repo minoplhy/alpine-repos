@@ -1,0 +1,86 @@
+# Contributor: Minoplhy <c@3qx.nl>
+maintainer="Minoplhy <c@3qx.nl>"
+pkgname=minoplhy-gitea
+pkgver=1.23.3
+pkgrel=0
+pkgdesc="I modify gitea"
+arch="all"
+url="https://gitea.com"
+license="MIT"
+depends="git git-lfs gnupg"
+makedepends="go bash xz wget git tar make npm nodejs"
+checkdepends="bash openssh openssh-keygen sqlite tzdata npm icu-data-full"
+install="$pkgname.pre-install"
+pkgusers="gitea"
+pkggroups="gitea"
+subpackages="$pkgname-openrc 
+	$pkgname-assets:gitea_assets"
+source="
+    scriptbox.zip::https://github.com/minoplhy/scriptbox/archive/refs/heads/main.zip
+	gitea.initd
+    $pkgver-no-activity.fakepatch
+
+    gitealogo/*
+    "
+
+#builddir="$srcdir/gitea-src-$pkgver"
+options="net !check"
+builddir=$srcdir/gitea
+
+export GOCACHE="${GOCACHE:-"$srcdir/go-cache"}"
+export GOTMPDIR="${GOTMPDIR:-"$srcdir"}"
+export GOMODCACHE="${GOMODCACHE:-"$srcdir/go"}"
+
+preparre() {
+    mkdir -p "$builddir"
+    default_prepare
+}
+
+build() {
+    bash "$srcdir"/scriptbox-main/build_gitea/Linux/build.sh --git-tag v"$pkgver" --static --type=gitea --system --dest "$builddir" --patch="$srcdir"/$pkgver-no-activity.fakepatch
+    #bash "$srcdir"/build.sh --git-tag v"$pkgver" --static --type=gitea --system --dest "$builddir" --patch="$srcdir"/$pkgver-no-activity.fakepatch
+}
+
+check() {
+	local home="$srcdir"/home
+	mkdir -p "$home"
+	install -d -m700 "$home"/.ssh
+	touch "$home"/.gitconfig
+
+	# unset CI env to skip redis, elasticsearch, meilisearch, minio tests
+	unset CI
+	env HOME="$home" GITEA_ROOT="$home" GITEA_WORK_DIR="$builddir" \
+		make test-sqlite && \
+		make test
+}
+
+package() {
+	for dir in gitea gitea/git gitea/data gitea/db gitea/custom gitea/templates; do
+		install -d -m 750 -o $pkgusers -g $pkggroups \
+			"$pkgdir"/var/lib/$dir
+	done
+
+	install -d -m 755 -o $pkgusers -g $pkggroups "$pkgdir"/var/log/gitea
+
+	install -D -m 755 $builddir/gitea "$pkgdir"/usr/bin/gitea
+
+	install -D -m 755 "$srcdir"/gitea.initd \
+		"$pkgdir"/etc/init.d/gitea
+
+	install -d -m 755 "$pkgdir"/var/www
+    cp -r $builddir/gitea-static "$pkgdir"/var/www/gitea_static
+    
+    for logo in apple-touch-icon.png avatar_default.png favicon.png favicon.svg icon.png icon.svg logo.png logo.svg; do
+        install -D "$srcdir"/$logo "$pkgdir"/var/www/gitea_static/assets/img/$logo
+    done
+}
+
+gitea_assets() {
+    amove var/www/gitea_static
+}
+
+sha512sums="
+ff2a3605333393d708c127bff6b068fce90c143c22f9cfb67c1ba87be1866517ccac562a6721ada6f49454306b2400a5ee1f6d7c407dca35c244b7148e48ae05  gitea-1.23.1.tar.gz
+71c767f9e851d99e6d87032faa833617ded28a292507c492bce63d0b87208819aa9ccbf8301d885da14901a4bdb93b21859883eaea78f980e8c8deb63ae8e57a  gitea.initd
+431184faffa8996873d92d7b0d16bc4b1a0178d264cd2928d1f49b13ad3e6470d9ede7a18c12112deeeb38f0647ccc0b012e98bcbd96e7b8496a3dc18f5b1fb7  gitea.ini
+"
