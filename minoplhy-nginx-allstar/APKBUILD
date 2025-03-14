@@ -24,13 +24,13 @@ depends="
     wget
     linux-headers
     sudo
+    g++
 "
 makedepends="
     mercurial
     cmake
     make
     git
-    g++
     build-base
     autoconf
     automake
@@ -59,7 +59,7 @@ package() {
 
     cp -r "$srcdir"/usr/* "$pkgdir"/usr
 
-	install -D -m 755 "$srcdir"/$pkgname.initd "$pkgdir"/etc/init.d/$pkgname
+	install -D -m 755 "$srcdir"/nginx.initd "$pkgdir"/etc/init.d/nginx
     install -d -m 755 "$pkgdir"/var/log/nginx
 	chown $pkgusers:$_grp_ngx "$pkgdir"/var/log/nginx
 }
