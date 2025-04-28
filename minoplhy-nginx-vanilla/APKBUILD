@@ -1,13 +1,25 @@
 # Contributor: Minoplhy <c@3qx.nl>
 maintainer="Minoplhy <c@3qx.nl>"
 pkgname=minoplhy-nginx-vanilla
-pkgver=1.27.4
-pkgrel=1
+pkgver=1.28.0
+pkgrel=0
 pkgdesc="Nginx"
 url="https://github.com/minoplhy/deployment"
 arch="x86_64"
 license="MIT"
-depends="
+makedepends="
+    mercurial
+    cmake
+    make
+    git
+    build-base
+    autoconf
+    automake
+    libtool
+    ninja
+    pkgconf
+    wget
+    linux-headers
     libunwind
     pcre-dev
     zlib-dev
@@ -20,22 +32,7 @@ depends="
     lmdb-dev
     libxml2-dev
     yajl-dev
-    pkgconf
-    wget
-    linux-headers
     sudo
-    g++
-"
-makedepends="
-    mercurial
-    cmake
-    make
-    git
-    build-base
-    autoconf
-    automake
-    libtool
-    ninja
 "
 pkgusers="nginx"
 _grp_ngx="nginx"
@@ -63,6 +60,6 @@ package() {
 }
 
 sha512sums="
-b8c9e7d55b512dbcb19892bb1ea9a6705d53fea17871ea888f7c93d4da077fa63b2676b6aac675d236a81eaf7ae55bb48ca27d0042c38498f5d1061452b1c9fd  minoplhy-nginx-vanilla-1.27.4.tar.gz
+efd4d0144239e8eb579cf15ced050c5838923f0455fa965243c35324f9d6295b7518d7683dde2d2a33057e6b2f0ebc55eca4e774cb24cde4a5bbd5a86d604a30  minoplhy-nginx-vanilla-1.28.0.tar.gz
 6f696579f2c3958d9d9c0c23e9e69e51344851aa15d29f4983a4d2feb493ac950fd6150f4a3cddc96a125261ae3cb69545fdb46218e8ab085c6c894b17b4a9a4  nginx.initd
 "

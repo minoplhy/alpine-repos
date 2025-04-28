@@ -1,13 +1,25 @@
 # Contributor: Minoplhy <c@3qx.nl>
 maintainer="Minoplhy <c@3qx.nl>"
 pkgname=minoplhy-nginx-allstar
-pkgver=1.27.4
-pkgrel=1
+pkgver=1.28.0
+pkgrel=0
 pkgdesc="Nginx"
 url="https://github.com/minoplhy/deployment"
 arch="x86_64"
 license="MIT"
-depends="
+makedepends="
+    mercurial
+    cmake
+    make
+    git
+    build-base
+    autoconf
+    automake
+    libtool
+    ninja
+    pkgconf
+    wget
+    linux-headers
     libunwind
     pcre-dev
     zlib-dev
@@ -20,22 +32,7 @@ depends="
     lmdb-dev
     libxml2-dev
     yajl-dev
-    pkgconf
-    wget
-    linux-headers
     sudo
-    g++
-"
-makedepends="
-    mercurial
-    cmake
-    make
-    git
-    build-base
-    autoconf
-    automake
-    libtool
-    ninja
 "
 pkgusers="nginx"
 _grp_ngx="nginx"
@@ -65,6 +62,6 @@ package() {
 }
 
 sha512sums="
-4c79d25e025083b6604f531bd37cdfe776fd72f47aa7b4e95cd2b8b408889615855382a63f4b15ce35cb6edf1114eb9f05e3a55eea85d199aa9efc1a8fa1a1c0  minoplhy-nginx-allstar-1.27.4.tar.gz
+7e8a9dbe12988f99c90dc83380fb8280bb078c268fb176e8ec937296cb4ffee4dc4cf15f230d3075690c8e76478704aec505ddda54919270fc1e482ab6425b52  minoplhy-nginx-allstar-1.28.0.tar.gz
 6f696579f2c3958d9d9c0c23e9e69e51344851aa15d29f4983a4d2feb493ac950fd6150f4a3cddc96a125261ae3cb69545fdb46218e8ab085c6c894b17b4a9a4  nginx.initd
 "
