@@ -1,0 +1,7 @@
+#!/bin/sh
+
+addgroup -S anubis 2>/dev/null
+adduser -S -D -s /usr/bin/nologin -G anubis -g anubis anubis 2>/dev/null \
+        && passwd -u anubis 2>/dev/null
+
+exit 0

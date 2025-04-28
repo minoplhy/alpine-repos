@@ -1,0 +1,31 @@
+#!/sbin/openrc-run
+
+supervisor=supervise-daemon
+name=anubis
+command="/usr/bin/anubis"
+command_user="${ANUBIS_USER:-anubis}"
+
+CONF="${SVCNAME#*.}"
+
+supervise_daemon_args="--stdout '${ANUBIS_LOG_FILE:-/var/log/anubis/${CONF}.log}' --stderr '${ANUBIS_LOG_FILE:-/var/log/anubis/${CONF}.log}'"
+pidfile="/run/anubis-${CONF}.pid"
+capabilities="^cap_net_bind_service"
+extra_started_commands="reload"
+
+depend() {
+  use logger dns
+  need net
+  after firewall
+}
+
+start_pre() {
+    if [ -f /etc/anubis/${CONF}.env ]; then
+        export $(grep -v '^#' /etc/anubis/${CONF}.env | xargs)
+    fi
+}
+
+reload() {
+    ebegin "Reloading ${CONF}"
+    start_pre
+    eend $?
+}

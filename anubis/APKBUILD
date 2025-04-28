@@ -1,0 +1,48 @@
+maintainer="fossdd <fossdd@pwned.life>"
+pkgname=anubis
+pkgver=1.17.0
+pkgrel=0
+pkgdesc="Block AI scrapers using a sha256 proof-of-work challenge"
+url="https://github.com/TecharoHQ/anubis"
+arch="all"
+license="MIT"
+makedepends="go npm bash zstd brotli"
+pkgusers="anubis"
+pkggroups="anubis"
+install="$pkgname.pre-install"
+subpackages="$pkgname-doc
+    $pkgname-openrc
+    "
+source="$pkgname-$pkgver.tar.gz::https://github.com/TecharoHQ/anubis/archive/refs/tags/v$pkgver.tar.gz
+	$pkgname.initd
+    "
+options="net !check" # check: no test suite
+
+# secfixes:
+#   1.15.2-r0:
+#     - CVE-2025-24369
+
+preparre() {
+    default_prepare
+    
+    make deps
+}
+
+build() {
+    make assets
+    make prebaked-build
+}
+
+package() {
+	install -Dm755 var/anubis -t "$pkgdir"/usr/bin/
+	install -Dm644 LICENSE -t "$pkgdir"/usr/share/licenses/$pkgname/
+    
+	install -D -m 755 "$srcdir"/$pkgname.initd "$pkgdir"/etc/init.d/$pkgname
+    install -d -m 644 "$pkgdir"/etc/$pkgname
+    install -d -m 755 -o $pkgusers -g $pkggroups "$pkgdir"/var/log/$pkgname
+}
+
+sha512sums="
+a72a77d9a1cbf3ef1900f703595f8f12228f0192892b8fec8afdc23c4a616cdecfdcf662e6c303bca5856da523c16ef1ded2ccc4fa23d1f4b8aaea946c07d934  anubis-1.17.0.tar.gz
+4ae16b3ff33eb01e351da63670c35a011a6bafab2a14adda816669ba0cd3d18254041f7992c82afcc3cd95a3bcc78ca49189bec35b4b1da9a644ec583c48ec9e  anubis.initd
+"
