@@ -5,6 +5,7 @@ description="Beszel Agent Service"
 command="/usr/bin/beszel-agent"
 command_user="beszel-agent"
 command_background="yes"
+config="/etc/conf.d/beszel-agent"
 pidfile="/run/\${RC_SVCNAME}.pid"
 output_log="/var/log/beszel-agent/beszel-agent.log"
 error_log="/var/log/beszel-agent/beszel-agent.err"
@@ -12,9 +13,11 @@ error_log="/var/log/beszel-agent/beszel-agent.err"
 start_pre() {
     checkpath -f -p -m 0644 -o beszel-agent:beszel-agent "\$output_log" "\$error_log"
     checkpath --directory -o beszel-agent:beszel-agent ${pidfile%/*}
-    
-    export PORT="$PORT"
-    export KEY="$KEY"
+
+    # Source and export Configuration variables
+    set -a
+    source $config
+    set +a 
 }
 
 depend() {
