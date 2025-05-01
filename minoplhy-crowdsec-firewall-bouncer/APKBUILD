@@ -39,3 +39,8 @@ package() {
 		"$builddir"/config/crowdsec-firewall-bouncer.yaml \
 		"$pkgdir"/etc/crowdsec/bouncers
 }
+
+sha512sums="
+400c61595f456668343d8ff34b68eaaabc03db4ae503d6a0a3def60cfd495162e9b72c75ed791d0bbfce691b36a947c2643922ad196a59fae53a300a740acab8  crowdsec-firewall-bouncer-0.0.31.tar.gz
+75a22f88820c84a66649bebe06bff4c1aaa00f60273aea54a37b6392a2df5d859f16cdb36f6f3dcefdfffdd0c05978e7ad0ab1062a4812fb31954fd45c6faba2  crowdsec-firewall-bouncer.initd
+"
