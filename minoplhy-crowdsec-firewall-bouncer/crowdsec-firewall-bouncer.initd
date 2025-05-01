@@ -1,0 +1,20 @@
+#!/sbin/openrc-run
+
+command=/usr/bin/crowdsec-firewall-bouncer
+command_args="-c /etc/crowdsec/bouncers/crowdsec-firewall-bouncer.yaml"
+pidfile="/run/${RC_SVCNAME}.pid"
+command_background=true
+extra_started_commands="reload"
+description_reload="Reload configuration"
+
+depend() {
+    need net
+    after firewall
+    use logger
+}
+
+reload() {
+	ebegin "Reloading $RC_SVCNAME"
+	start-stop-daemon --signal HUP --pidfile "$pidfile"
+	eend $?
+}

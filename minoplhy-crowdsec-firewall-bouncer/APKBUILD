@@ -1,0 +1,41 @@
+pkgname=crowdsec-firewall-bouncer
+pkgver=0.0.31
+pkgrel=0
+pkgdesc="Crowdsec Bouncer: Iptables Firewall"
+url="https://crowdsec.net/"
+arch="all"
+license="MIT"
+depends="iptables ipset"
+makedepends="go"
+subpackages="
+	$pkgname-openrc
+	"
+options="!check" # no test suite identified
+source="$pkgname-$pkgver.tar.gz::https://github.com/crowdsecurity/cs-firewall-bouncer/archive/refs/tags/v$pkgver.tar.gz
+	"$pkgname".initd
+	"
+
+export GOCACHE="${GOCACHE:-"$srcdir/go-cache"}"
+export GOTMPDIR="${GOTMPDIR:-"$srcdir"}"
+export GOMODCACHE="${GOMODCACHE:-"$srcdir/go"}"
+
+builddir="$srcdir"/cs-firewall-bouncer-$pkgver
+
+build() {
+	make binary \
+		BUILD_VERSION=v$pkgver \
+		BUILD_TAG="aports"
+}
+
+
+package() {
+	install -Dm 0755 "$builddir"/crowdsec-firewall-bouncer "$pkgdir"/usr/bin/crowdsec-firewall-bouncer
+	install -Dm 0755 "$srcdir"/"$pkgname".initd "$pkgdir"/etc/init.d/"$pkgname"
+
+    install -dm 0755 \
+		"$pkgdir"/etc/crowdsec/bouncers
+
+	install -m 0600 \
+		"$builddir"/config/crowdsec-firewall-bouncer.yaml \
+		"$pkgdir"/etc/crowdsec/bouncers
+}
