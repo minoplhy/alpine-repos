@@ -7,6 +7,8 @@ cat >&2 <<EOF
 *
 * Recommended command before starting Crowdsec 
 *
+*   Force create ent machine(fix not found error):
+*     cscli machines add -a --force --error
 *   Force Register capi:
 *     cscli capi register --error
 *   Hub update:
