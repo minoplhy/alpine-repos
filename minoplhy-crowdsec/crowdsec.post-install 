@@ -1,0 +1,19 @@
+#!/bin/sh
+
+[ -s /etc/crowdsec/local_api_credentials.yaml ] || cscli machines add -a --force --error
+
+
+cat >&2 <<EOF
+*
+* Recommended command before starting Crowdsec 
+*
+*   Force Register capi:
+*     cscli capi register --error
+*   Hub update:
+*     cscli hub update
+*   Hub upgrade:
+*     cscli hub upgrade
+*
+EOF
+
+exit 0

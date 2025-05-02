@@ -9,8 +9,17 @@ description_reload="Reload configuration"
 
 depend() {
     need net
-    after firewall
+    after firewall crowdsec
     use logger
+}
+
+start_pre() {
+    ebegin "Validating CrowdSec firewall bouncer config"
+    ${command} -c /etc/crowdsec/bouncers/crowdsec-firewall-bouncer.yaml -t || return 1
+    eend $?
+
+    # Wait for Crowdsec to start(in case of boot)
+    sleep 2
 }
 
 reload() {

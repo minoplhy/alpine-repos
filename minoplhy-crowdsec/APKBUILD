@@ -3,11 +3,12 @@
 # Maintainer: Nicolas Lorin <androw95220@gmail.com>
 pkgname=crowdsec
 pkgver=1.6.8
-pkgrel=0
+pkgrel=1
 pkgdesc="behavior detection engine, coupled with a global IP reputation network"
 url="https://crowdsec.net/"
 arch="all"
 license="MIT"
+install="$pkgname.post-install"
 makedepends="go sqlite-dev re2-dev"
 subpackages="
 	$pkgname-openrc
@@ -16,11 +17,9 @@ subpackages="
 	$pkgname-sentinel-plugin:_plugin
 	$pkgname-slack-plugin:_plugin
 	$pkgname-splunk-plugin:_plugin
-	$pkgname-discord-plugin:_plugin
 	"
 options="!check" # no test suite identified
 source="$pkgname-$pkgver-2.tar.gz::https://github.com/crowdsecurity/crowdsec/archive/refs/tags/v$pkgver.tar.gz
-    discord.yaml::https://owu.se/p-p/minoplhy/scriptbox/raw/branch/main/crowdsec-notifications/discord.yaml
 	system-sqlite.patch
 	crowdsec.initd
 	"
@@ -64,7 +63,6 @@ package() {
 		cmd/notification-slack/slack.yaml \
 		cmd/notification-splunk/splunk.yaml \
 		cmd/notification-sentinel/sentinel.yaml \
-        "$srcdir"/discord.yaml \
 		"$pkgdir"/etc/crowdsec/notifications
 	install -m 0551 \
 		cmd/notification-email/notification-email \
@@ -90,14 +88,11 @@ _plugin() {
 	pkgdesc="$pkgname plugin: $_subpkgname"
 	depends="$pkgname=$pkgver-r$pkgrel"
 	amove etc/crowdsec/notifications/$_subpkgname.yaml
-    if [[ $_subpkgname -ne "discord" ]]; then
-	    amove usr/libexec/crowdsec/plugins/notification-$_subpkgname
-    fi
+	amove usr/libexec/crowdsec/plugins/notification-$_subpkgname
 }
 
 sha512sums="
 088456e434ca5908b4dd2ca90dc886a262bd12ff2f8e3e38430355500d19f5b0e1c8cc2ac4c6967cd0126a087c473b734a53ffda0e1a28eba89100278b2a5614  crowdsec-1.6.8-2.tar.gz
-445c731b0b01a8219b00cac3ad5c02af3c9676ce620b6c202a0e85afb04ce9b351b408a07c2d5f07fba1f23d75a9427807f0852eb43658f91d49b39ed02ec49a  discord.yaml
 3cb94cb663195bcc9d3d2f155c7bcb4c1f53b0660155140a7a91b5c0c6f41a234024a8f38f68c9da7adae2a2291f7ebe36187f89aab2fe2a0d1c8df34861c990  system-sqlite.patch
 098db47afd457c9d68c69097c31fae29cd0c0dc98199b254f75b130ac228ac43c024182bebd7eae756ae4fa2f54682b7f0534cb04311468224d9df2ce4f67ec2  crowdsec.initd
 "

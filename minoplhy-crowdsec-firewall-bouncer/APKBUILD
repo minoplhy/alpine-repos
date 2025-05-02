@@ -1,6 +1,8 @@
+# Contributor: Minoplhy <c@3qx.nl>
+maintainer="Minoplhy <c@3qx.nl>"
 pkgname=crowdsec-firewall-bouncer
 pkgver=0.0.31
-pkgrel=0
+pkgrel=1
 pkgdesc="Crowdsec Bouncer: Iptables Firewall"
 url="https://crowdsec.net/"
 arch="all"
@@ -9,10 +11,12 @@ depends="iptables ipset"
 makedepends="go"
 subpackages="
 	$pkgname-openrc
+	$pkgname-awall::noarch
 	"
 options="!check" # no test suite identified
 source="$pkgname-$pkgver.tar.gz::https://github.com/crowdsecurity/cs-firewall-bouncer/archive/refs/tags/v$pkgver.tar.gz
 	"$pkgname".initd
+	awall-policy.json
 	"
 
 export GOCACHE="${GOCACHE:-"$srcdir/go-cache"}"
@@ -35,9 +39,19 @@ package() {
     install -dm 0755 \
 		"$pkgdir"/etc/crowdsec/bouncers
 
-	install -m 0600 \
-		"$builddir"/config/crowdsec-firewall-bouncer.yaml \
-		"$pkgdir"/etc/crowdsec/bouncers
+	(umask 077 && BACKEND=iptables API_KEY="" envsubst \
+		<config/crowdsec-firewall-bouncer.yaml \
+		>"$pkgdir"/etc/crowdsec/bouncers/crowdsec-firewall-bouncer.yaml)
+}
+
+
+awall() {
+	pkgdesc="crowdsec bouncer awall policy"
+	depends="$pkgname"
+	install_if="awall $pkgname=$pkgver-r$pkgrel"
+
+	install -Dm0644 "$srcdir"/awall-policy.json \
+		"$subpkgdir"/etc/awall/optional/cs-firewall-bouncer.json
 }
 
 sha512sums="

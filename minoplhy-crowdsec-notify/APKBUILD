@@ -1,0 +1,37 @@
+# Contributor: Minoplhy <c@3qx.nl>
+maintainer="Minoplhy <c@3qx.nl>"
+pkgname=crowdsec-notify
+pkgver=0.0.1
+pkgrel=0
+pkgdesc="Crowdsec Notifications"
+url="https://crowdsec.net/"
+arch="all"
+license="MIT"
+subpackages="$pkgname-discord:_plugin"
+options="!check" # no test suite identified
+source="discord.yaml::https://owu.se/p-p/minoplhy/scriptbox/raw/branch/main/crowdsec-notifications/discord.yaml"
+
+package() {
+    install -dm 0755 \
+	"$pkgdir"/etc/crowdsec/notifications
+
+	install -m 0600 \
+        "$srcdir"/discord.yaml \
+		"$pkgdir"/etc/crowdsec/notifications
+}
+
+_plugin() {
+	_subpkgname="${subpkgname:9:(${#subpkgname}-16)}"
+	pkgdesc="$pkgname plugin: $_subpkgname"
+	depends="$pkgname=$pkgver-r$pkgrel"
+	amove etc/crowdsec/notifications/$_subpkgname.yaml
+    # Excerpt from minoplhy's original modification of minoplhy-crowdsec
+    # 
+    #if [[ $_subpkgname -ne "discord" ]]; then
+	#    amove usr/libexec/crowdsec/plugins/notification-$_subpkgname
+    #fi
+}
+
+sha512sums="
+445c731b0b01a8219b00cac3ad5c02af3c9676ce620b6c202a0e85afb04ce9b351b408a07c2d5f07fba1f23d75a9427807f0852eb43658f91d49b39ed02ec49a  discord.yaml
+"
