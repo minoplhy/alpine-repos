@@ -1,7 +1,7 @@
 # Contributor: tetsumaki <yd-alpine@tetsumaki.net>
 # Contributor: Nicolas Lorin <androw95220@gmail.com>
 # Maintainer: Nicolas Lorin <androw95220@gmail.com>
-pkgname=crowdsec
+pkgname=minoplhy-crowdsec
 pkgver=1.6.8
 pkgrel=1
 pkgdesc="behavior detection engine, coupled with a global IP reputation network"

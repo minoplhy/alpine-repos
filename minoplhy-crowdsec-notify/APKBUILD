@@ -1,6 +1,6 @@
 # Contributor: Minoplhy <c@3qx.nl>
 maintainer="Minoplhy <c@3qx.nl>"
-pkgname=crowdsec-notify
+pkgname=minoplhy-crowdsec-notify
 pkgver=0.0.1
 pkgrel=0
 pkgdesc="Crowdsec Notifications"
