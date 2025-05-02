@@ -5,7 +5,7 @@ pkgver=0.0.1
 pkgrel=0
 pkgdesc="Crowdsec Notifications"
 url="https://crowdsec.net/"
-arch="all"
+arch="noarch"
 license="MIT"
 subpackages="$pkgname-discord:_plugin"
 options="!check" # no test suite identified
@@ -21,7 +21,7 @@ package() {
 }
 
 _plugin() {
-	_subpkgname="${subpkgname:9:(${#subpkgname}-16)}"
+	_subpkgname="${subpkgname#crowdsec-notify-}"
 	pkgdesc="$pkgname plugin: $_subpkgname"
 	depends="$pkgname=$pkgver-r$pkgrel"
 	amove etc/crowdsec/notifications/$_subpkgname.yaml
