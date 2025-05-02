@@ -34,7 +34,7 @@ build() {
 
 package() {
 	install -Dm 0755 "$builddir"/crowdsec-firewall-bouncer "$pkgdir"/usr/bin/crowdsec-firewall-bouncer
-	install -Dm 0755 "$srcdir"/"$pkgname".initd "$pkgdir"/etc/init.d/"$pkgname"
+	install -Dm 0755 "$srcdir"/"crowdsec-firewall-bouncer".initd "$pkgdir"/etc/init.d/"crowdsec-firewall-bouncer.initd"
 
     install -dm 0755 \
 		"$pkgdir"/etc/crowdsec/bouncers
