@@ -21,7 +21,7 @@ package() {
 }
 
 _plugin() {
-	_subpkgname="${subpkgname#crowdsec-notify-}"
+	_subpkgname="${subpkgname#minoplhy-crowdsec-notify-}"
 	pkgdesc="$pkgname plugin: $_subpkgname"
 	depends="$pkgname=$pkgver-r$pkgrel"
 	amove etc/crowdsec/notifications/$_subpkgname.yaml
