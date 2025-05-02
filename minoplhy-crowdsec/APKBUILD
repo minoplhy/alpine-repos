@@ -1,7 +1,7 @@
 # Contributor: tetsumaki <yd-alpine@tetsumaki.net>
 # Contributor: Nicolas Lorin <androw95220@gmail.com>
 # Maintainer: Nicolas Lorin <androw95220@gmail.com>
-pkgname=minoplhy-crowdsec
+pkgname=crowdsec
 pkgver=1.6.8
 pkgrel=1
 pkgdesc="behavior detection engine, coupled with a global IP reputation network"
@@ -19,7 +19,7 @@ subpackages="
 	$pkgname-splunk-plugin:_plugin
 	"
 options="!check" # no test suite identified
-source="crowdsec-$pkgver-2.tar.gz::https://github.com/crowdsecurity/crowdsec/archive/refs/tags/v$pkgver.tar.gz
+source="$pkgname-$pkgver-2.tar.gz::https://github.com/crowdsecurity/crowdsec/archive/refs/tags/v$pkgver.tar.gz
 	system-sqlite.patch
 	crowdsec.initd
 	"

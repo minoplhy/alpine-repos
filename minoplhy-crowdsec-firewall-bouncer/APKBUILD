@@ -1,6 +1,6 @@
 # Contributor: Minoplhy <c@3qx.nl>
 maintainer="Minoplhy <c@3qx.nl>"
-pkgname=minoplhy-crowdsec-firewall-bouncer
+pkgname=crowdsec-firewall-bouncer
 pkgver=0.0.31
 pkgrel=1
 pkgdesc="Crowdsec Bouncer: Iptables Firewall"
@@ -14,8 +14,8 @@ subpackages="
 	$pkgname-awall::noarch
 	"
 options="!check" # no test suite identified
-source="crowdsec-firewall-bouncer-$pkgver.tar.gz::https://github.com/crowdsecurity/cs-firewall-bouncer/archive/refs/tags/v$pkgver.tar.gz
-	crowdsec-firewall-bouncer.initd
+source="$pkgname-$pkgver.tar.gz::https://github.com/crowdsecurity/cs-firewall-bouncer/archive/refs/tags/v$pkgver.tar.gz
+	"$pkgname".initd
 	awall-policy.json
 	"
 
@@ -34,7 +34,7 @@ build() {
 
 package() {
 	install -Dm 0755 "$builddir"/crowdsec-firewall-bouncer "$pkgdir"/usr/bin/crowdsec-firewall-bouncer
-	install -Dm 0755 "$srcdir"/"crowdsec-firewall-bouncer".initd "$pkgdir"/etc/init.d/"crowdsec-firewall-bouncer.initd"
+	install -Dm 0755 "$srcdir"/"$pkgname".initd "$pkgdir"/etc/init.d/"$pkgname"
 
     install -dm 0755 \
 		"$pkgdir"/etc/crowdsec/bouncers
