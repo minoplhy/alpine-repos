@@ -19,7 +19,7 @@ subpackages="
 	$pkgname-splunk-plugin:_plugin
 	"
 options="!check" # no test suite identified
-source="$pkgname-$pkgver-2.tar.gz::https://github.com/crowdsecurity/crowdsec/archive/refs/tags/v$pkgver.tar.gz
+source="crowdsec-$pkgver-2.tar.gz::https://github.com/crowdsecurity/crowdsec/archive/refs/tags/v$pkgver.tar.gz
 	system-sqlite.patch
 	crowdsec.initd
 	"
