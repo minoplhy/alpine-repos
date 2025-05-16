@@ -1,7 +1,7 @@
 # Contributor: Minoplhy <c@3qx.nl>
 maintainer="Minoplhy <c@3qx.nl>"
 pkgname=minoplhy-gitea
-pkgver=1.23.7
+pkgver=1.23.8
 pkgrel=0
 pkgdesc="I modify gitea"
 arch="all"
@@ -37,8 +37,8 @@ prepare() {
 }
 
 build() {
-    bash "$srcdir"/scriptbox-main/build_gitea/Linux/build.sh --git-tag v"$pkgver" --static --type=gitea --system --dest "$builddir" --patch="$srcdir"/$pkgver-no-activity.fakepatch
-    #bash "$srcdir"/build.sh --git-tag v"$pkgver" --static --type=gitea --system --dest "$builddir" --patch="$srcdir"/$pkgver-no-activity.fakepatch
+	git clone https://github.com/go-gitea/gitea "$srcdir/gitea-src"
+    bash "$srcdir"/scriptbox-main/build_gitea/Linux/build.sh --git-tag v"$pkgver" --static --source-folder="$srcdir/gitea-src" --system --dest "$builddir" --patch="$srcdir"/$pkgver-no-activity.fakepatch
 }
 
 check() {
@@ -80,9 +80,8 @@ gitea_assets() {
 }
 
 sha512sums="
-2b5d411522450893ebc17c2f444e2ef470302f4d2886f4a8cb9c189638b328fad2f7f20a6586c2e759d9f966dd1e4554434041da8dbfffaa81a44f94a46084a9  scriptbox.zip
+0bb76dc43bc96ce197af2d645a32d71dd1a9542860466ef02ae851a2aab242cc2829423dfa02ad667cfb229d4453c770ffe211f0281f1b09f7a47c31dc3a5e39  scriptbox.zip
 a8b4a35aac208942f2dc1b4e3a3f1dee33f83605a9c0e6f4e36e5c89c82b6581718517592ceb815b4a085ff749b3ab06d4552a75112e526ff9b2d7fd0d23d5eb  gitea.initd
-f9a3075c2cead20ea5813a581502cfbd8717d8e1dc61336260a9a7c267589be9c5c1968ce73c1b041083ca35ee9c8bbf4aa8df9cefde75f00c8e1086c755a970  1.23.7-no-activity.fakepatch
 e5940a039c0318e80e9abc2da55b74cef02a65adfc7862bcc19defe11cbcf2b2a076af2c39483911358ed58e108f7bcd6240152102fe40e2ef1fdca2e815055a  apple-touch-icon.png
 d27169f6d1e3998d409d43e98d32ab16b809493bb8a1cb963aa87b203e38de6825112c133522db53fd9b9c770c535b2a410e645bcee3f3d654158aa6036a4d88  avatar_default.png
 2ed4c11675953f84b71b4d678d6b4ca9618b71868d015fb77958e69a87c5efbba08e8453db9f0788b23e0bd9af09b4934e810926a6ddc89013df308fcf7681b0  favicon.png
@@ -91,4 +90,5 @@ e5940a039c0318e80e9abc2da55b74cef02a65adfc7862bcc19defe11cbcf2b2a076af2c39483911
 d89f737ef04f16e5dbc570206095286dd1509e44a493ca61c3eac05c66e5b3dcb6bf428bfbed7fd1f61eee41e8217572f237be52e0b835e449c4cd58d3703a7c  icon.svg
 e5940a039c0318e80e9abc2da55b74cef02a65adfc7862bcc19defe11cbcf2b2a076af2c39483911358ed58e108f7bcd6240152102fe40e2ef1fdca2e815055a  logo.png
 fdebf42d5fa077fdcb743471ffed01fcfe311d6ba4b0d6a75aec0de5c41481d16fb86ee6eedb91edd9bf80df35d9ebade4034995689e2643bdb0a34716e255ee  logo.svg
+f9a3075c2cead20ea5813a581502cfbd8717d8e1dc61336260a9a7c267589be9c5c1968ce73c1b041083ca35ee9c8bbf4aa8df9cefde75f00c8e1086c755a970  1.23.8-no-activity.fakepatch
 "
