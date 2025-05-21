@@ -30,8 +30,9 @@ build() {
 package() {
 	install -Dm755 opengist "$pkgdir"/usr/bin/opengist
     
+    install -d -m 750 -o $pkgusers -g $pkggroups "$pkgdir"/var/lib/opengist
 	install -D -m 755 "$srcdir"/$pkgname.initd "$pkgdir"/etc/init.d/$pkgname
-    install -d -m 644 "$pkgdir"/etc/$pkgname
+    install -d -m 740 "$pkgdir"/etc/$pkgname
     install -d -m 755 -o $pkgusers -g $pkggroups "$pkgdir"/var/log/$pkgname
 }
 
