@@ -1,0 +1,41 @@
+maintainer="Minoplhy <c@3qx.nl>"
+pkgname=opengist
+pkgver=1.10.0
+pkgrel=0
+pkgdesc="Self-hosted pastebin powered by Git, open-source alternative to Github Gist."
+url="https://opengist.io/"
+arch="x86_64"
+license="AGPL-3.0"
+makedepends="go npm nodejs"
+pkgusers="opengist"
+pkggroups="opengist"
+install="$pkgname.pre-install"
+subpackages="
+    $pkgname-openrc
+    "
+source="$pkgname-$pkgver.tar.gz::https://github.com/thomiceli/opengist/archive/refs/tags/v$pkgver.tar.gz
+	$pkgname.initd
+    "
+options="net !check" # check: no test suite
+
+export GOCACHE="${GOCACHE:-"$srcdir/go-cache"}"
+export GOTMPDIR="${GOTMPDIR:-"$srcdir"}"
+export GOMODCACHE="${GOMODCACHE:-"$srcdir/go"}"
+
+build() {
+    npm install vite
+    make build
+}
+
+package() {
+	install -Dm755 opengist "$pkgdir"/usr/bin/opengist
+    
+	install -D -m 755 "$srcdir"/$pkgname.initd "$pkgdir"/etc/init.d/$pkgname
+    install -d -m 644 "$pkgdir"/etc/$pkgname
+    install -d -m 755 -o $pkgusers -g $pkggroups "$pkgdir"/var/log/$pkgname
+}
+
+sha512sums="
+9ebe2aabd707a3948aef9f11ac00b9a2a8108e0edb53a2d4d0a60c2ed648e31e1c5218074b0d3c751f0667655aec3a37b8403457f0f53d237d7b48db9cfce9f3  opengist-1.10.0.tar.gz
+e973a530ba7540fead882fcc996ab42cb316ddc8f75ddc970ed20f83992972bdfdc33440f5e750ba9e8bce767b11d6314aee982e8a5321e451a2c310c879e067  opengist.initd
+"

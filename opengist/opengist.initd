@@ -1,0 +1,16 @@
+#!/sbin/openrc-run
+
+supervisor=supervise-daemon
+name=opengist
+command="/usr/bin/opengist"
+command_user="${OPENGIST_USER:-opengist}"
+command_args="--config '${OPENGIST_CONF:-/etc/opengist/config.yml}'"
+supervise_daemon_args="--chdir '${OPENGIST_WORK_DIR:-/var/lib/opengist}' --stdout '${OPENGIST_LOG_FILE:-/var/log/opengist/opengist.log}' --stderr '${OPENGIST_LOG_FILE:-/var/log/opengist/opengist.log}'"
+pidfile="/run/opengist.pid"
+capabilities="^cap_net_bind_service"
+
+depend() {
+  use logger dns
+  need net
+  after firewall
+}
