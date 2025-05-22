@@ -15,6 +15,8 @@ subpackages="$pkgname-doc
     "
 source="$pkgname-$pkgver.tar.gz::https://github.com/TecharoHQ/anubis/archive/refs/tags/v$pkgver.tar.gz
 	$pkgname.initd
+    logo/*
+
     "
 options="net !check" # check: no test suite
 
@@ -24,7 +26,10 @@ options="net !check" # check: no test suite
 
 preparre() {
     default_prepare
-    
+
+    for logo in happy.webp pensive.webp sad.webp; do
+        install -D "$srcdir"/$logo "$builddir"/web/static/img/$logo
+    done
     make deps
 }
 
