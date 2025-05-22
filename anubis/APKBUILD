@@ -30,9 +30,9 @@ export GOMODCACHE="${GOMODCACHE:-"$srcdir/go"}"
 
 prepare() {
     default_prepare
-    
+
     for logo in happy.webp pensive.webp sad.webp; do
-        mv "$srcdir"/$logo "$builddir"/web/static/img/$logo
+        cp "$srcdir"/$logo "$builddir"/web/static/img/$logo
     done
     make deps
 }
