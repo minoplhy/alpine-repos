@@ -2,7 +2,7 @@
 maintainer="Minoplhy <c@3qx.nl>"
 pkgname=minoplhy-nginx-allstar
 pkgver=1.28.0
-pkgrel=0
+pkgrel=1
 pkgdesc="Nginx"
 url="https://github.com/minoplhy/deployment"
 arch="x86_64"

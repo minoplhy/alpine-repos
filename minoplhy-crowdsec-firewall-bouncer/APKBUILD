@@ -1,8 +1,8 @@
 # Contributor: Minoplhy <c@3qx.nl>
 maintainer="Minoplhy <c@3qx.nl>"
 pkgname=crowdsec-firewall-bouncer
-pkgver=0.0.31
-pkgrel=1
+pkgver=0.0.33
+pkgrel=0
 pkgdesc="Crowdsec Bouncer: Iptables Firewall"
 url="https://crowdsec.net/"
 arch="all"
@@ -43,6 +43,6 @@ package() {
 }
 
 sha512sums="
-400c61595f456668343d8ff34b68eaaabc03db4ae503d6a0a3def60cfd495162e9b72c75ed791d0bbfce691b36a947c2643922ad196a59fae53a300a740acab8  crowdsec-firewall-bouncer-0.0.31.tar.gz
+178aaf6a03cf1ab20b69e9876889b61581006af99a05b42182ac2c3ed8bb0cbcdd4cc388f0c4de818241ca9b5659c7f745e318a2a1fa8ee4616f81014600ef4a  crowdsec-firewall-bouncer-0.0.33.tar.gz
 c7f522a18b61211ed4a3fa9a0b0242fec59e9a57107f0d1bba793ccce85f4d7dce0cf3c1286a3708f52e16b73cdb8266ea8da21afa6a051c9c4368bd99265e6e  crowdsec-firewall-bouncer.initd
 "
