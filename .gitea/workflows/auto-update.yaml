@@ -45,7 +45,7 @@ jobs:
 
           echo "📝 Committing changes..."
           git config --global user.name "Builder"
-          git config --global user.email "hurbar@3qx.nl"
+          git config --global user.email "hubr@3qx.nl"
           git config --global --add safe.directory .
 
           git add .
