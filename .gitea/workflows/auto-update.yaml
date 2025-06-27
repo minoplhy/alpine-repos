@@ -22,7 +22,7 @@ jobs:
 
       - name: Clone repository using token
         run: |
-          git clone https://${{ secrets.TOKEN }}@owu.se/p-p/minoplhy/test-alpine-repos.git .
+          git clone https://${{ secrets.TOKEN }}@owu.se/p-p/minoplhy/alpine-repos.git .
           chown -R builder: .
 
       - name: Run abuild checksum in subdirectories using dir command
