@@ -1,0 +1,64 @@
+name: ABuild Checksum on Changed Subdirs
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  abuild-checksum:
+    runs-on: alpine-latest
+    steps:
+      - name: Run script
+        run: |
+          apk add curl bash bash-completion alpine-sdk git doas
+        shell: sh
+      - name: Setup Build user
+        run: |
+          adduser builder -G abuild -D
+          addgroup builder wheel
+          echo "permit nopass :wheel" >> /etc/doas.d/20-wheel.conf
+          su - builder -c 'abuild-keygen -a -i -n || true'
+
+      - name: Clone repository using token
+        run: |
+          git clone https://${{ secrets.TOKEN }}@owu.se/p-p/minoplhy/test-alpine-repos.git .
+          chown -R builder: .
+
+      - name: Run abuild checksum in subdirectories using dir command
+        run: |
+          dirs=$(ls -d */ | sed 's:/$::')
+          echo "Directories found:"
+          echo "$dirs"
+
+          for dir in $dirs; do
+            if [ -f "$dir/APKBUILD" ]; then
+              echo "✅ $dir: APKBUILD found, running abuild checksum..."
+              cd "$dir"
+              doas -u builder abuild checksum
+              doas -u builder abuild clean
+              cd ..
+            else
+              echo "⛔ $dir: No APKBUILD found, skipping."
+            fi
+          done
+
+          echo "📝 Committing changes..."
+          git config --global user.name "Builder"
+          git config --global user.email "hurbar@3qx.nl"
+          git config --global --add safe.directory .
+
+          git add .
+
+          if git diff --cached --quiet; then
+            echo "No changes staged... exiting"
+            exit 0
+          fi
+
+          if git commit -m "misc: checksum update"; then
+            git push
+            echo "Changes pushed to repository successfully"
+          else
+            echo "Error committing"
+            exit 1
+          fi

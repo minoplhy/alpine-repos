@@ -1,8 +1,8 @@
 # Contributor: Minoplhy <c@3qx.nl>
 maintainer="Minoplhy <c@3qx.nl>"
 pkgname=minoplhy-nginx-vanilla
-pkgver=1.28.0
-pkgrel=1
+pkgver=1.29.0
+pkgrel=0
 pkgdesc="Nginx"
 url="https://github.com/minoplhy/deployment"
 arch="x86_64"
