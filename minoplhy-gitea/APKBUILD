@@ -1,7 +1,7 @@
 # Contributor: Minoplhy <c@3qx.nl>
 maintainer="Minoplhy <c@3qx.nl>"
 pkgname=minoplhy-gitea
-pkgver=1.24.2
+pkgver=1.24.3
 pkgrel=0
 pkgdesc="I modify gitea"
 arch="all"
