@@ -12,3 +12,6 @@ LISTEN="45876"
 # Monitor extra disk
 # more info: https://beszel.dev/guide/additional-disks#binary-agent
 #EXTRA_FILESYSTEMS=""
+
+# since v0.12.0 WebSocket registration token. Provided in hub.
+#TOKEN=""
