@@ -43,6 +43,6 @@ package() {
 }
 
 sha512sums="
-178aaf6a03cf1ab20b69e9876889b61581006af99a05b42182ac2c3ed8bb0cbcdd4cc388f0c4de818241ca9b5659c7f745e318a2a1fa8ee4616f81014600ef4a  crowdsec-firewall-bouncer-0.0.33.tar.gz
+ad5bf6535474a22cb517284158d0ac25d8d469fbb8a09afe4eccd7ea0ede894bdc856d1c69db42fec1293c1704dbdd20c95ae125a359741d3d0a2a3813b37f6e  crowdsec-firewall-bouncer-0.0.34.tar.gz
 c7f522a18b61211ed4a3fa9a0b0242fec59e9a57107f0d1bba793ccce85f4d7dce0cf3c1286a3708f52e16b73cdb8266ea8da21afa6a051c9c4368bd99265e6e  crowdsec-firewall-bouncer.initd
 "
