@@ -13,10 +13,8 @@ start_pre() {
     checkpath -f -p -m 0644 -o beszel-agent:beszel-agent "\$output_log" "\$error_log"
     checkpath --directory -o beszel-agent:beszel-agent ${pidfile%/*}
 
-    # Source and export Configuration variables
-    set -a
-    source $config
-    set +a 
+    export PORT="$PORT"
+    export KEY="$KEY"
 }
 
 depend() {

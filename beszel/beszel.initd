@@ -21,10 +21,3 @@ reopen_log() {
   ${supervisor} ${RC_SVCNAME} --signal USR1 --pidfile "${pidfile}"
   eend $?
 }
-
-start_pre() {
-  # Source and export Configuration variables
-  set -a
-  source $config
-  set +a 
-}
