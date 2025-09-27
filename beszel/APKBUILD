@@ -29,17 +29,17 @@ export GOTMPDIR="${GOTMPDIR:-"$srcdir"}"
 export GOMODCACHE="${GOMODCACHE:-"$srcdir/go"}"
 
 build() {
-	make -j1 -C $builddir/$pkgname-$pkgver
+	make -j1 -C $builddir
 }
 
 
 package() {
-	install -D -m 755 "$builddir"/$pkgname-$pkgver/build/${pkgname}_linux_* "$pkgdir"/usr/bin/$pkgname
+	install -D -m 755 "$builddir"/build/${pkgname}_linux_* "$pkgdir"/usr/bin/$pkgname
 	install -D -m 755 "$srcdir"/$pkgname.initd "$pkgdir"/etc/init.d/$pkgname
 	install -D -m 644 "$srcdir"/$pkgname.confd "$pkgdir"/etc/conf.d/$pkgname
 	install -d -m 750 -o $pkgusers -g $pkggroups "$pkgdir"/var/lib/$pkgname
 
-	install -D -m 755 "$builddir"/$pkgname-$pkgver/build/$pkgname-agent_linux_* "$pkgdir"/usr/bin/$pkgname-agent
+	install -D -m 755 "$builddir"/build/$pkgname-agent_linux_* "$pkgdir"/usr/bin/$pkgname-agent
 
 	install -d -m 755 -o beszel -g beszel "$pkgdir"/var/log/$pkgname
 	install -d -m 755 -o beszel-agent -g beszel-agent "$pkgdir"/var/log/$pkgname-agent
