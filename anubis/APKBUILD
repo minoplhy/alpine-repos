@@ -1,6 +1,6 @@
 maintainer="fossdd <fossdd@pwned.life>"
 pkgname=anubis
-pkgver=1.21.3
+pkgver=1.22.0
 pkgrel=0
 pkgdesc="Block AI scrapers using a sha256 proof-of-work challenge"
 url="https://github.com/TecharoHQ/anubis"
