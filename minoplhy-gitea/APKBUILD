@@ -16,7 +16,7 @@ pkggroups="gitea"
 subpackages="$pkgname-openrc 
 	$pkgname-assets:gitea_assets"
 source="
-    scriptbox.zip::https://github.com/minoplhy/scriptbox/archive/refs/heads/main.zip
+    build.sh::https://owu.se/p-p/minoplhy/scriptbox/raw/branch/main/build_gitea/Linux/build.sh
 	gitea.initd
 
     gitealogo/*
@@ -38,7 +38,7 @@ prepare() {
 
 build() {
 	git clone https://github.com/go-gitea/gitea "$srcdir/gitea-src"
-    bash "$srcdir"/scriptbox-main/build_gitea/Linux/build.sh --git-tag v"$pkgver" --static --source-folder="$srcdir/gitea-src" --system --dest "$builddir" --patch="$srcdir"/$pkgver-no-activity.fakepatch
+    bash "$srcdir"/build.sh --git-tag v"$pkgver" --static --source-folder="$srcdir/gitea-src" --system --dest "$builddir" --patch="$srcdir"/$pkgver-no-activity.fakepatch
 }
 
 check() {
