@@ -1,7 +1,7 @@
 # Contributor: Minoplhy <c@3qx.nl>
 maintainer="Minoplhy <c@3qx.nl>"
 pkgname=beszel
-pkgver=0.12.12
+pkgver=0.13.1
 pkgrel=0
 pkgdesc="Lightweight server monitoring hub with historical data, docker stats, and alerts."
 url="https://beszel.dev/"
