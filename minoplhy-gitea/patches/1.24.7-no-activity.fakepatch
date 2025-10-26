@@ -1,0 +1,25 @@
+diff --git a/routers/web/web.go b/routers/web/web.go
+index bd850baec0..bfbaa6afc7 100644
+--- a/routers/web/web.go
++++ b/routers/web/web.go
+@@ -1479,20 +1479,6 @@ func registerWebRoutes(m *web.Router) {
+ 		m.Get("", repo.Activity)
+ 		m.Get("/{period}", repo.Activity)
+ 
+-		m.Group("", func() {
+-			m.Group("/contributors", func() {
+-				m.Get("", repo.Contributors)
+-				m.Get("/data", repo.ContributorsData)
+-			})
+-			m.Group("/code-frequency", func() {
+-				m.Get("", repo.CodeFrequency)
+-				m.Get("/data", repo.CodeFrequencyData)
+-			})
+-			m.Group("/recent-commits", func() {
+-				m.Get("", repo.RecentCommits)
+-				m.Get("/data", repo.CodeFrequencyData) // "recent-commits" also uses the same data as "code-frequency"
+-			})
+-		}, reqUnitCodeReader)
+ 	},
+ 		optSignIn, context.RepoAssignment, repo.MustBeNotEmpty,
+ 		context.RequireUnitReader(unit.TypeCode, unit.TypeIssues, unit.TypePullRequests, unit.TypeReleases),
