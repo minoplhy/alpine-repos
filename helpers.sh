@@ -5,6 +5,8 @@
 #
 #   usage: ./helpers.sh
 #   arguments: --dir, --token
+#
+#   Example: bash helpers.sh --srcdir "$(realpath ../alpine-cache)" 
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -14,6 +16,10 @@ while [[ $# -gt 0 ]]; do
             ;;
         --token)
             TOKEN="$2"
+            shift 2
+            ;;
+        --srcdir)
+            SRCDIR="$2"
             shift 2
             ;;
         *)
@@ -79,6 +85,13 @@ for dir in $dirs; do
                 if [[ $RELEASE_N != 0 ]]; then
                     sed -i "s/^pkgrel=.*$/pkgrel=0/" "APKBUILD"
                 fi
+                ARGS=()
+                if [[ -n "$SRCDIR" ]]; then
+                    ARGS+=(-s $SRCDIR )
+                fi
+                ARGS+=(checksum)
+                echo "${ARGS[@]}"
+                abuild "${ARGS[@]}"
                 echo "$NAME: pkgver updated to $REPO_VERSION in APKBUILD"
             elif [[ $VERSION == $REPO_VERSION ]]; then
                 echo "$NAME: pkgver is up-to-date"
