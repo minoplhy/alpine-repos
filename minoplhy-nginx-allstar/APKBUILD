@@ -1,7 +1,7 @@
 # Contributor: Minoplhy <c@3qx.nl>
 maintainer="Minoplhy <c@3qx.nl>"
 pkgname=minoplhy-nginx-allstar
-pkgver=1.29.1
+pkgver=1.29.3
 pkgrel=0
 pkgdesc="Nginx"
 url="https://github.com/minoplhy/deployment"
@@ -62,6 +62,6 @@ package() {
 }
 
 sha512sums="
-a0797ff96a7eaacbd927b317bea572bef8afd458d85d471d7161f563bbf19caf0566df0226bbe93e99acae04559ec2bfa28b7bb93ca2ec9912905a73d21d1654  minoplhy-nginx-allstar-1.29.1.tar.gz
+b722430d0cb9a9e230cb9e1e7298afd569a8e9d705401ae156ccf4ae476a371316503dcbe885765a69f794d8c2f17d81d34b10e5d8447d61fb6a44f255752065  minoplhy-nginx-allstar-1.29.3.tar.gz
 6f696579f2c3958d9d9c0c23e9e69e51344851aa15d29f4983a4d2feb493ac950fd6150f4a3cddc96a125261ae3cb69545fdb46218e8ab085c6c894b17b4a9a4  nginx.initd
 "
