@@ -28,7 +28,7 @@ export GOCACHE="${GOCACHE:-"$srcdir/go-cache"}"
 export GOTMPDIR="${GOTMPDIR:-"$srcdir"}"
 export GOMODCACHE="${GOMODCACHE:-"$srcdir/go"}"
 
-builddir="anubis"-"$pkgver"
+builddir="$srcdir"/"anubis"-"$pkgver"
 
 prepare() {
     default_prepare
