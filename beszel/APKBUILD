@@ -8,7 +8,7 @@ url="https://beszel.dev/"
 arch="x86_64 aarch64"
 license="MIT"
 depends="tar curl"
-makedepends="go>=1.25.5 npm"
+makedepends="go>=1.25 npm"
 install="$pkgname.pre-install $pkgname-agent.pre-install"
 pkgusers="beszel beszel-agent"
 pkggroups="beszel beszel-agent"
@@ -21,6 +21,7 @@ source="$pkgname-$pkgver.tar.gz::https://github.com/henrygd/beszel/archive/refs/
 	$pkgname.initd
 	$pkgname-agent.confd
 	$pkgname-agent.initd
+	00-go-version.patch
 	"
 options="net !check" # check: no test suite
 
@@ -68,4 +69,5 @@ sha512sums="
 fd64065cc06b2ec3492722bdd2da0ea3bb2a823533239e1c79c117de163dd1a9832853538f1377af57524c9023e636afc09e163a38007e8e4b71e63035d1881f  beszel.initd
 c127684e14265037eef9d6ea16149e7a3ee0a6846fd3019de630aa026e0a679ef6e80df2a8d8459963438c30836f543da54bb9cee489e205ec34e60fdb09d805  beszel-agent.confd
 c76cbee4d66cd188432805ea0fc0cd048178ea7794fc25cffcb71935f0dac013a547f0912dee2b0cd62c23602e49432c843100229a2c3ef3d6dd15617221af39  beszel-agent.initd
+a9d488cf778df490ea84160ec27218642dbe672160a1f261821fd9ac4fba3979202b9d0f7441a73589eca63a34ffd64d8c225148994e98421c39376124bd4d91  00-go-version.patch
 "
