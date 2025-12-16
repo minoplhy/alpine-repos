@@ -28,11 +28,13 @@ export GOCACHE="${GOCACHE:-"$srcdir/go-cache"}"
 export GOTMPDIR="${GOTMPDIR:-"$srcdir"}"
 export GOMODCACHE="${GOMODCACHE:-"$srcdir/go"}"
 
+builddir="anubis"-"$pkgver"
+
 prepare() {
     default_prepare
 
     for logo in happy.webp pensive.webp reject.webp; do
-        cp "$srcdir"/$logo "anubis"-"$pkgver"/web/static/img/$logo
+        cp "$srcdir"/$logo "$builddir"/web/static/img/$logo
     done
     make deps
 }
