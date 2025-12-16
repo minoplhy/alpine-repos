@@ -9,7 +9,7 @@ license="MIT"
 makedepends="go npm bash zstd brotli"
 pkgusers="anubis"
 pkggroups="anubis"
-install="anubis.pre-install"
+install="$pkgname.pre-install"
 subpackages="$pkgname-doc
     $pkgname-openrc
     "
