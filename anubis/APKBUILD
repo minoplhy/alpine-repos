@@ -1,5 +1,5 @@
 maintainer="fossdd <fossdd@pwned.life>"
-pkgname=anubis
+pkgname=minoplhy-anubis
 pkgver=1.23.1
 pkgrel=0
 pkgdesc="Block AI scrapers using a sha256 proof-of-work challenge"
@@ -9,12 +9,12 @@ license="MIT"
 makedepends="go npm bash zstd brotli"
 pkgusers="anubis"
 pkggroups="anubis"
-install="$pkgname.pre-install"
+install="anubis.pre-install"
 subpackages="$pkgname-doc
     $pkgname-openrc
     "
 source="$pkgname-$pkgver.tar.gz::https://github.com/TecharoHQ/anubis/archive/refs/tags/v$pkgver.tar.gz
-	$pkgname.initd
+	anubis.initd
     logo/*
 
     "
@@ -44,11 +44,11 @@ build() {
 
 package() {
 	install -Dm755 var/anubis -t "$pkgdir"/usr/bin/
-	install -Dm644 LICENSE -t "$pkgdir"/usr/share/licenses/$pkgname/
+	install -Dm644 LICENSE -t "$pkgdir"/usr/share/licenses/$anubis/
     
-	install -D -m 755 "$srcdir"/$pkgname.initd "$pkgdir"/etc/init.d/$pkgname
-    install -d -m 644 "$pkgdir"/etc/$pkgname
-    install -d -m 755 -o $pkgusers -g $pkggroups "$pkgdir"/var/log/$pkgname
+	install -D -m 755 "$srcdir"/anubis.initd "$pkgdir"/etc/init.d/anubis
+    install -d -m 644 "$pkgdir"/etc/anubis
+    install -d -m 755 -o $pkgusers -g $pkggroups "$pkgdir"/var/log/anubis
 }
 
 sha512sums="
