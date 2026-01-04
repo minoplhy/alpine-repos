@@ -1,7 +1,7 @@
 # Contributor: Minoplhy <c@3qx.nl>
 maintainer="Minoplhy <c@3qx.nl>"
 pkgname=minoplhy-nginx-allstar
-pkgver=1.29.3
+pkgver=1.29.4
 pkgrel=0
 pkgdesc="Nginx"
 url="https://github.com/minoplhy/deployment"
@@ -22,6 +22,7 @@ makedepends="
     linux-headers
     libunwind
     pcre-dev
+    pcre2-dev
     zlib-dev
     libxslt-dev
     gd-dev
@@ -41,20 +42,50 @@ pkggroups="$_grp_ngx $_grp_www"
 install="$pkgname.pre-install"
 subpackages="$pkgname-openrc
 	"
-source="$pkgname-$pkgver.tar.gz::https://github.com/minoplhy/deployment/releases/download/alpine-nginx-release-$pkgver/alpine-nginx-release-$pkgver-allstar.tar.gz
+source="nginx-$pkgver.tar.gz::https://github.com/nginx/nginx/archive/refs/tags/release-$pkgver.tar.gz
+    nginx-build.sh::https://chy.li/p-p/minoplhy/scriptbox/raw/branch/main/nginx_build_script/build.sh
 	nginx.initd
 	"
 options="net !check" # check: no test suite
+builddir=$srcdir/nginx
+
+prepare() {
+    mkdir -p "$builddir"
+    default_prepare
+}
+
+build() {
+    bash "$srcdir"/nginx-build.sh --lua --modsecurity --type=nginx --modsecurity-prefix="$builddir"/usr --lua-prefix="$builddir"/usr/share/lua/5.4 --luajit2-prefix="$builddir"/usr --ssl=quictls --builddir "$builddir" --source-folder="$srcdir"/nginx-release-"$pkgver"
+}
 
 package() {
-    install -D -m 755 "$srcdir"/home/runner/nginx_scriptbox/nginx/objs/nginx "$pkgdir"/usr/sbin/nginx
+    install -D -m 755 "$builddir"/nginx/objs/nginx "$pkgdir"/usr/sbin/nginx
     chown root:root "$pkgdir"/usr/sbin/nginx
     
-    install -d -m 755 "$pkgdir"/lib/nginx/modules
-    install -D -m 755 "$srcdir"/home/runner/nginx_scriptbox/nginx/objs/*.so "$pkgdir"/lib/nginx/modules
-    chown -R root:root "$pkgdir"/lib/nginx/modules
+    install -d -m 755 "$pkgdir"/usr/lib/nginx/modules
+    install -D -m 755 "$builddir"/nginx/objs/*.so "$pkgdir"/usr/lib/nginx/modules
+    chown -R root:root "$pkgdir"/usr/lib/nginx/modules
 
-    cp -r "$srcdir"/usr/* "$pkgdir"/usr
+    install -d -m 755 "$pkgdir"/usr/include
+
+    install -d -m 755 "$pkgdir"/usr/share/lua/5.4
+    cp -r "$builddir"/usr/share/lua/5.4/* "$pkgdir"/usr/share/lua/5.4
+
+    install -d -m 755 "$pkgdir"/usr/share/luajit-2.1/jit
+    install -D -m 755 "$builddir"/usr/share/luajit-2.1/jit/* "$pkgdir"/usr/share/luajit-2.1/jit
+
+    install -D -m 755 "$builddir"/usr/bin/modsec-rules-check "$pkgdir"/usr/bin/modsec-rules-check
+    install -D -m 755 "$builddir"/usr/bin/luajit "$pkgdir"/usr/bin/luajit
+
+    cp -r "$builddir"/usr/lib/* "$pkgdir"/usr/lib/
+    install -d -m 755 "$pkgdir"/usr/lib/pkgconfig
+    install -D -m 755 "$builddir"/usr/lib/pkgconfig/* "$pkgdir"/usr/lib/pkgconfig
+
+    install -d -m 755 "$pkgdir"/usr/include/modsecurity
+    cp -r "$builddir"/usr/include/modsecurity/* "$pkgdir"/usr/include/modsecurity
+
+    install -d -m 755 "$pkgdir"/usr/include/luajit-2.1
+    install -D -m 755 "$builddir"/usr/include/luajit-2.1/* "$pkgdir"/usr/include/luajit-2.1
 
 	install -D -m 755 "$srcdir"/nginx.initd "$pkgdir"/etc/init.d/nginx
     install -d -m 755 "$pkgdir"/var/log/nginx
@@ -62,6 +93,7 @@ package() {
 }
 
 sha512sums="
-b722430d0cb9a9e230cb9e1e7298afd569a8e9d705401ae156ccf4ae476a371316503dcbe885765a69f794d8c2f17d81d34b10e5d8447d61fb6a44f255752065  minoplhy-nginx-allstar-1.29.3.tar.gz
+bed36f2dd805940b9b77c680f83c9f06153c6c9063d2b4d16488c6a900729561bbebf3c60392952c50c105a73e8d4f18894fef932616affebc5b8e5f35d6b09a  nginx-1.29.4.tar.gz
+10a8e0cf16acc944a0893527b82cc81aa228d387a1b69e77c25de6b3a2ab74904b5a6601cda30811db5e349c7c197b9f809c7e37c7280fa6790956780b367e87  nginx-build.sh
 6f696579f2c3958d9d9c0c23e9e69e51344851aa15d29f4983a4d2feb493ac950fd6150f4a3cddc96a125261ae3cb69545fdb46218e8ab085c6c894b17b4a9a4  nginx.initd
 "

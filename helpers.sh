@@ -73,9 +73,12 @@ for dir in $dirs; do
 
         if [[ $GITHUB == true ]]; then
             case $NAME in
-                minoplhy-nginx*)
+                minoplhy-nginx-vanilla)
                     REPO_VERSION=$(s_curl -s "https://api.github.com/repos/$user_repo/releases" | jq -r '.[] | .tag_name' | grep -E '^alpine-nginx-release' | sort -V | tail -n 1 | sed 's/^alpine-nginx-release-//')
                 ;;
+                minoplhy-nginx-allstar)
+                    REPO_VERSION=$(s_curl -s "https://api.github.com/repos/$user_repo/releases/latest" | jq -r '.tag_name' | sed 's/^release-//')
+                ;;                
                 *)
                     REPO_VERSION=$(s_curl -s "https://api.github.com/repos/$user_repo/releases/latest" | jq -r '.tag_name' | sed 's/^v//')
                 ;;
