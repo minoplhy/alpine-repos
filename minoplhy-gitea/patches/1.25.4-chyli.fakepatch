@@ -1,0 +1,25 @@
+diff --git a/cmd/hook.go b/cmd/hook.go
+index 2f866dd396..ca175648e4 100644
+--- a/cmd/hook.go
++++ b/cmd/hook.go
+@@ -383,6 +383,20 @@ Gitea or set your environment appropriately.`, "")
+ 			continue
+ 		}
+ 
++		username := os.Getenv(repo_module.EnvRepoUsername)
++		reponame := os.Getenv(repo_module.EnvRepoName)
++
++		// server-hook for owu.se migration to chy.li
++		fmt.Fprintf(out, " \n")
++		fmt.Fprintf(out, " $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n")
++		fmt.Fprintf(out, " \n")
++		fmt.Fprintf(out, " Warning:   git origin changes is required, if you didn't change it already!\n")
++		fmt.Fprintf(out, " Original:  https://owu.se/p-p/%s/%s\n", username, reponame)
++		fmt.Fprintf(out, " To:        https://chy.li/p-p/%s/%s\n", username, reponame)
++		fmt.Fprintf(out, " Read more: https://chy.li/blog/owu.se-migration\n")
++		fmt.Fprintf(out, " \n")
++		fmt.Fprintf(out, " $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n\n")
++
+ 		fmt.Fprintf(out, ".")
+ 		oldCommitIDs[count] = string(fields[0])
+ 		newCommitIDs[count] = string(fields[1])
