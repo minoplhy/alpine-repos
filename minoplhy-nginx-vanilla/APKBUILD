@@ -1,7 +1,7 @@
 # Contributor: Minoplhy <c@3qx.nl>
 maintainer="Minoplhy <c@3qx.nl>"
 pkgname=minoplhy-nginx-vanilla
-pkgver=1.29.4
+pkgver=1.29.5
 pkgrel=0
 pkgdesc="Nginx"
 url="https://github.com/nginx/nginx"
@@ -66,7 +66,7 @@ package() {
 }
 
 sha512sums="
-bed36f2dd805940b9b77c680f83c9f06153c6c9063d2b4d16488c6a900729561bbebf3c60392952c50c105a73e8d4f18894fef932616affebc5b8e5f35d6b09a  nginx-1.29.4.tar.gz
+4d966b20950a6f49711763195cb0e9817f0080453d20a70eded51decc6235ecfecd23ff7b9f1c2814bc59c22b7c163d5fe54dc42abb3c80c3acd0dca99438aa3  nginx-1.29.5.tar.gz
 10a8e0cf16acc944a0893527b82cc81aa228d387a1b69e77c25de6b3a2ab74904b5a6601cda30811db5e349c7c197b9f809c7e37c7280fa6790956780b367e87  nginx-build.sh
 6f696579f2c3958d9d9c0c23e9e69e51344851aa15d29f4983a4d2feb493ac950fd6150f4a3cddc96a125261ae3cb69545fdb46218e8ab085c6c894b17b4a9a4  nginx.initd
 "
