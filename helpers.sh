@@ -6,7 +6,7 @@
 #   usage: ./helpers.sh
 #   arguments: --dir, --token
 #
-#   Example: bash helpers.sh --srcdir "$(realpath ../alpine-cache)" 
+#   Example: bash helpers.sh --src-dir "$(realpath ../alpine-cache)" 
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -18,7 +18,7 @@ while [[ $# -gt 0 ]]; do
             TOKEN="$2"
             shift 2
             ;;
-        --srcdir)
+        --src-dir)
             SRCDIR="$2"
             shift 2
             ;;
