@@ -38,7 +38,7 @@ prepare() {
 
 build() {
 	git clone https://github.com/go-gitea/gitea "$srcdir/gitea-src"
-    bash "$srcdir"/build.sh --git-tag v"$pkgver" --static --source-folder="$srcdir/gitea-src" --system --dest "$builddir" --patch="$srcdir"/$pkgver-no-activity.fakepatch,"$srcdir"/$pkgver-chyli.fakepatch
+    bash "$srcdir"/build.sh --git-tag v"$pkgver" --static --source-folder="$srcdir/gitea-src" --system --dest "$builddir" --patch="$srcdir"/$pkgver-no-activity.fakepatch
 }
 
 check() {
