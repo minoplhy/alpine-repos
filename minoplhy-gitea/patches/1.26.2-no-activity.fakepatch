@@ -1,8 +1,8 @@
 diff --git a/routers/web/web.go b/routers/web/web.go
-index ecd75250d2..055311b3a9 100644
+index 085558c9b2..4bdedbd4a1 100644
 --- a/routers/web/web.go
 +++ b/routers/web/web.go
-@@ -1590,20 +1590,6 @@ func registerWebRoutes(m *web.Router, webAuth *AuthMiddleware) {
+@@ -1582,20 +1582,6 @@ func registerWebRoutes(m *web.Router, webAuth *AuthMiddleware) {
                 m.Get("", repo.Activity)
                 m.Get("/{period}", repo.Activity)
  
