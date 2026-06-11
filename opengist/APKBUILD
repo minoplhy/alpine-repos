@@ -24,7 +24,7 @@ export GOMODCACHE="${GOMODCACHE:-"$srcdir/go"}"
 
 build() {
     npm install vite
-    make build
+    make
 }
 
 package() {
