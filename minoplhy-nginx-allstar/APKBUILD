@@ -1,7 +1,7 @@
 # Contributor: Minoplhy <c@3qx.nl>
 maintainer="Minoplhy <c@3qx.nl>"
 pkgname=minoplhy-nginx-allstar
-pkgver=1.31.2
+pkgver=1.31.3
 pkgrel=0
 pkgdesc="Nginx"
 url="https://github.com/nginx/nginx"
@@ -93,7 +93,7 @@ package() {
 }
 
 sha512sums="
-b27d91352a4cc9e845c767cf3430f1714401fe1d3a711250930a39edfe3b69e07ffdeddaf2cb37912e3b2f078db331ff4505187b7904470e8d00d32251579d16  nginx-1.31.2.tar.gz
+bf360b07cb9f94bffc4a45702fb37a8ece2c04dcb8dc5b95f24de3d97e9d2cf68b8228a2e17bc0b81bb93ebd46065573959d4a75d3decb67c31d56a16efd7c45  nginx-1.31.3.tar.gz
 ce44cc5287d517ad6d04744e8ac9019b808eb78e28045dcfacfe2fc5f9e9b536cb5e2856f4ef3571217cb00130b28f253a0a97e121e3ce7c1911b98cf3cd22f3  nginx-build.sh
 6f696579f2c3958d9d9c0c23e9e69e51344851aa15d29f4983a4d2feb493ac950fd6150f4a3cddc96a125261ae3cb69545fdb46218e8ab085c6c894b17b4a9a4  nginx.initd
 "
