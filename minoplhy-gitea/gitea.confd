@@ -1,0 +1,4 @@
+GITEA_WORK_DIR=/var/lib/gitea
+GITEA_CONF=/etc/gitea/app.ini
+GITEA_USER=gitea
+GITEA_WORK_DIR=/var/log/gitea/http.log

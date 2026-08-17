@@ -1,7 +1,7 @@
 # Contributor: Minoplhy <c@3qx.nl>
 maintainer="Minoplhy <c@3qx.nl>"
 pkgname=minoplhy-gitea
-pkgver=1.27.0
+pkgver=1.27.2
 pkgrel=0
 pkgdesc="I modify gitea"
 arch="all"
@@ -18,6 +18,7 @@ subpackages="$pkgname-openrc
 source="
     build.sh::https://chy.li/p-p/minoplhy/scriptbox/raw/branch/main/build_gitea/Linux/build.sh
 	gitea.initd
+	gitea.confd
 
     gitealogo/*
 	patches/$pkgver-no-activity.fakepatch
@@ -67,6 +68,9 @@ package() {
 	install -D -m 755 "$srcdir"/gitea.initd \
 		"$pkgdir"/etc/init.d/gitea
 
+	install -D -m 755 "$srcdir"/gitea.confd \
+		"$pkgdir"/etc/conf.d/gitea
+
 	install -d -m 755 "$pkgdir"/var/www
     cp -r $builddir/gitea-static "$pkgdir"/var/www/gitea_static
     
@@ -82,6 +86,7 @@ gitea_assets() {
 sha512sums="
 8c8379dc780dd8f5a59eb645741d21518d1eab5327202c9fe33abcf1b05177058cc8c2fbbccc180c3a2cc8ca0aad25d08bc7122e910d0b0d949d674e3c775399  build.sh
 a8b4a35aac208942f2dc1b4e3a3f1dee33f83605a9c0e6f4e36e5c89c82b6581718517592ceb815b4a085ff749b3ab06d4552a75112e526ff9b2d7fd0d23d5eb  gitea.initd
+158faa994953c5bfc8f4fedbbd2f32964e0edaec24639f6e06cb3b0ae390368fb5585b95dce4ae93959b8b2f415471e313007dd372f644173e4e7a8e36bda9aa  gitea.confd
 e5940a039c0318e80e9abc2da55b74cef02a65adfc7862bcc19defe11cbcf2b2a076af2c39483911358ed58e108f7bcd6240152102fe40e2ef1fdca2e815055a  apple-touch-icon.png
 d27169f6d1e3998d409d43e98d32ab16b809493bb8a1cb963aa87b203e38de6825112c133522db53fd9b9c770c535b2a410e645bcee3f3d654158aa6036a4d88  avatar_default.png
 2ed4c11675953f84b71b4d678d6b4ca9618b71868d015fb77958e69a87c5efbba08e8453db9f0788b23e0bd9af09b4934e810926a6ddc89013df308fcf7681b0  favicon.png
@@ -90,5 +95,5 @@ e5940a039c0318e80e9abc2da55b74cef02a65adfc7862bcc19defe11cbcf2b2a076af2c39483911
 d89f737ef04f16e5dbc570206095286dd1509e44a493ca61c3eac05c66e5b3dcb6bf428bfbed7fd1f61eee41e8217572f237be52e0b835e449c4cd58d3703a7c  icon.svg
 e5940a039c0318e80e9abc2da55b74cef02a65adfc7862bcc19defe11cbcf2b2a076af2c39483911358ed58e108f7bcd6240152102fe40e2ef1fdca2e815055a  logo.png
 fdebf42d5fa077fdcb743471ffed01fcfe311d6ba4b0d6a75aec0de5c41481d16fb86ee6eedb91edd9bf80df35d9ebade4034995689e2643bdb0a34716e255ee  logo.svg
-514eb8fa53a58b881ff3efa9ee2a885ebd3fcf2c7a07206aac525703865500c14dd9874c6b7bc9fa3b750449c083e249e6a710883aaa52a48dc4b4792c3bb47d  1.27.0-no-activity.fakepatch
+514eb8fa53a58b881ff3efa9ee2a885ebd3fcf2c7a07206aac525703865500c14dd9874c6b7bc9fa3b750449c083e249e6a710883aaa52a48dc4b4792c3bb47d  1.27.2-no-activity.fakepatch
 "
