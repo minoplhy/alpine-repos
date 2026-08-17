@@ -1,6 +1,6 @@
 maintainer="Minoplhy <c@3qx.nl>"
 pkgname=opengist
-pkgver=1.14.0
+pkgver=1.15.1
 pkgrel=0
 pkgdesc="Self-hosted pastebin powered by Git, open-source alternative to Github Gist."
 url="https://opengist.io/"
@@ -16,7 +16,6 @@ subpackages="
 source="$pkgname-$pkgver.tar.gz::https://github.com/thomiceli/opengist/archive/refs/tags/v$pkgver.tar.gz
 	$pkgname.initd
     
-    patches/$pkgver-go-version.patch
     "
 options="net !check" # check: no test suite
 
@@ -39,7 +38,6 @@ package() {
 }
 
 sha512sums="
-08f011b7b8e63490e3fc1f5bc899d72d7a664f898373754888b5960db9d480926449d0afe0a35935933ed32cf32719c50bf71745b821232180e9d0f062551625  opengist-1.14.0.tar.gz
+d5a29dcaab93c5889f7fc0ecd3357b3aa068eaa11ad2ef3a012583ff956917b1bd809e6d3c8f8b95779c5902d8d9ba4740d9e2d0e19ce865da8218cbaa574605  opengist-1.15.1.tar.gz
 b939d6c014c588d5a7c3ee823e5d94711948dbd72ab6250bc6822369b11ff59fd87c320dfdb4efecbd9f70c376cbcdae3efd41b118e41976ed2e37ab3179812b  opengist.initd
-76bca5c90c88d77a39e45a92c0d8898c58194be32b2f6cbc00cd8ffa15be7f99d7716eb41786f815669800e6694f30556a9c435021bad05f6dafac44872e6a55  1.14.0-go-version.patch
 "
