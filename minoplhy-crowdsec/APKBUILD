@@ -3,7 +3,7 @@
 # Maintainer: Nicolas Lorin <androw95220@gmail.com>
 pkgname=crowdsec
 pkgver=1.8.1
-pkgrel=0
+pkgrel=1
 pkgdesc="behavior detection engine, coupled with a global IP reputation network"
 url="https://crowdsec.net/"
 arch="all"
@@ -18,7 +18,7 @@ subpackages="
 	$pkgname-slack-plugin:_plugin
 	$pkgname-splunk-plugin:_plugin
 	"
-options="!check" # no test suite identified
+options="!check net" # no test suite identified
 source="$pkgname-$pkgver-2.tar.gz::https://github.com/crowdsecurity/crowdsec/archive/refs/tags/v$pkgver.tar.gz
 	system-sqlite.patch
 	crowdsec.initd
