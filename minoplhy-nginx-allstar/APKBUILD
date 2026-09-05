@@ -2,7 +2,7 @@
 maintainer="Minoplhy <c@3qx.nl>"
 pkgname=minoplhy-nginx-allstar
 pkgver=1.31.5
-pkgrel=0
+pkgrel=1
 pkgdesc="Nginx"
 url="https://github.com/nginx/nginx"
 arch="x86_64"
@@ -55,7 +55,7 @@ prepare() {
 }
 
 build() {
-    bash "$srcdir"/nginx-build.sh --lua --modsecurity --type=nginx --modsecurity-prefix="$builddir"/usr --lua-prefix="$builddir"/usr/share/lua/5.4 --luajit2-prefix="$builddir"/usr --ssl=boringssl --builddir "$builddir" --source-folder="$srcdir"/nginx-release-"$pkgver"
+    bash "$srcdir"/nginx-build.sh --lua --modsecurity --type=nginx --modsecurity-prefix="$builddir"/usr --lua-prefix="$builddir"/usr/share/lua/5.4 --luajit2-prefix="$builddir"/usr --ssl=openssl --builddir "$builddir" --source-folder="$srcdir"/nginx-release-"$pkgver" --openssl-version=4.0.2
 }
 
 package() {
@@ -94,6 +94,6 @@ package() {
 
 sha512sums="
 59bfafb1f761251f072bab0d6c54af03bdfc72720e89a9afda8a497a8ff64692e902f30c7c8e458c3cda01406c629a7ae10a80eec7faa62b8fdd1858ddc2cec4  nginx-1.31.5.tar.gz
-196fcbc9e1b2cbc068ba537bfa950494bc5399f7678c96e495535f898611412af7039c7cbab808a475a49e6f05b95a842fc9d128d29a7e5a10735936bdf09048  nginx-build.sh
+504cb5e1636afdc326e02ab734d9a800c3fe3a0ebee19e2f2da999bc54d464065964ee2ee6d54b9e36a556a2451eb5d5c84fb48ec2e7055ac000a94cb9f1b381  nginx-build.sh
 6f696579f2c3958d9d9c0c23e9e69e51344851aa15d29f4983a4d2feb493ac950fd6150f4a3cddc96a125261ae3cb69545fdb46218e8ab085c6c894b17b4a9a4  nginx.initd
 "
