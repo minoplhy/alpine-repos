@@ -55,7 +55,7 @@ prepare() {
 }
 
 build() {
-    bash "$srcdir"/nginx-build.sh --lua --modsecurity --type=nginx --modsecurity-prefix="$builddir"/usr --lua-prefix="$builddir"/usr/share/lua/5.4 --luajit2-prefix="$builddir"/usr --ssl=quictls --builddir "$builddir" --source-folder="$srcdir"/nginx-release-"$pkgver"
+    bash "$srcdir"/nginx-build.sh --lua --modsecurity --type=nginx --modsecurity-prefix="$builddir"/usr --lua-prefix="$builddir"/usr/share/lua/5.4 --luajit2-prefix="$builddir"/usr --ssl=boringssl --builddir "$builddir" --source-folder="$srcdir"/nginx-release-"$pkgver"
 }
 
 package() {

@@ -49,7 +49,7 @@ options="net !check" # check: no test suite
 builddir=$srcdir/nginx
 
 build() {
-    bash "$srcdir"/nginx-build.sh  --type=nginx --ssl=quictls --builddir "$builddir" --source-folder="$srcdir"/nginx-release-"$pkgver"
+    bash "$srcdir"/nginx-build.sh  --type=nginx --ssl=boringssl --builddir "$builddir" --source-folder="$srcdir"/nginx-release-"$pkgver"
 }
 
 package() {
