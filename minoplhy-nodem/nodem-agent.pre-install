@@ -1,0 +1,7 @@
+#!/bin/sh
+
+addgroup -S nodem-agent 2>/dev/null
+adduser -S -D -s /sbin/nologin -G nodem-agent -g nodem-agent nodem-agent -H -h /var/lib/nodem 2>/dev/null \
+        && passwd -u nodem-agent 2>/dev/null
+
+exit 0

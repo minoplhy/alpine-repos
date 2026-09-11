@@ -1,0 +1,30 @@
+#!/sbin/openrc-run
+
+supervisor=supervise-daemon
+name=nodem
+description="nodem (NodeManager + ECH Manager) control plane daemon"
+command="/usr/bin/nodem"
+command_user="${NODEM_USER:-nodem}"
+command_args="--db=${NODEM_DB:-${NODEM_DATADIR:-/var/lib/nodem}/nodem.db} daemon --port=${PORT:-8080} --ssh-port=${ECH_SSH_PORT:-${SSH_PORT:-34234}}"
+supervise_daemon_args="--chdir '${NODEM_DATADIR:-/var/lib/nodem}' --stdout '${NODEM_LOG_FILE:-/var/log/nodem/nodem.log}' --stderr '${NODEM_LOG_FILE:-/var/log/nodem/nodem.log}'"
+pidfile="/run/${RC_SVCNAME}.pid"
+extra_started_commands="reopen_log"
+capabilities="^cap_net_bind_service"
+
+depend() {
+	use logger dns
+	need net
+	after firewall
+}
+
+start_pre() {
+	checkpath -d -m 0750 -o "${command_user:-nodem:nodem}" "${NODEM_DATADIR:-/var/lib/nodem}"
+	checkpath -d -m 0755 -o "${command_user:-nodem:nodem}" "${NODEM_LOG_FILE%/*}"
+	checkpath -f -m 0644 -o "${command_user:-nodem:nodem}" "${NODEM_LOG_FILE:-/var/log/nodem/nodem.log}"
+}
+
+reopen_log() {
+	ebegin "Reopening logfile for ${RC_SVCNAME}"
+	${supervisor} ${RC_SVCNAME} --signal USR1 --pidfile "${pidfile}"
+	eend $?
+}

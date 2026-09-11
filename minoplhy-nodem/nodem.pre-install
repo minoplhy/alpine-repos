@@ -1,0 +1,7 @@
+#!/bin/sh
+
+addgroup -S nodem 2>/dev/null
+adduser -S -D -s /sbin/nologin -G nodem -g nodem nodem -H -h /var/lib/nodem 2>/dev/null \
+        && passwd -u nodem 2>/dev/null
+
+exit 0

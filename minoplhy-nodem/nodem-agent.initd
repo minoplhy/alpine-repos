@@ -1,0 +1,27 @@
+#!/sbin/openrc-run
+
+supervisor=supervise-daemon
+name="nodem-agent"
+description="nodem (NodeManager + ECH Manager) edge agent daemon"
+command="/usr/bin/nodem-agent"
+command_user="${NODEM_AGENT_USER:-root}"
+supervise_daemon_args="--chdir '${ECH_STORAGE_DIR:-/var/lib/nodem}' --stdout '${NODEM_AGENT_LOG_FILE:-/var/log/nodem-agent/nodem-agent.log}' --stderr '${NODEM_AGENT_LOG_FILE:-/var/log/nodem-agent/nodem-agent.log}'"
+pidfile="/run/${RC_SVCNAME}.pid"
+extra_started_commands="reopen_log"
+
+depend() {
+	need net
+	after firewall
+}
+
+start_pre() {
+	checkpath -d -m 0750 -o "${command_user:-root}" "${ECH_STORAGE_DIR:-/var/lib/nodem}"
+	checkpath -d -m 0755 -o "${command_user:-root}" "${NODEM_AGENT_LOG_FILE%/*}"
+	checkpath -f -m 0644 -o "${command_user:-root}" "${NODEM_AGENT_LOG_FILE:-/var/log/nodem-agent/nodem-agent.log}"
+}
+
+reopen_log() {
+	ebegin "Reopening logfile for ${RC_SVCNAME}"
+	${supervisor} ${RC_SVCNAME} --signal USR1 --pidfile "${pidfile}"
+	eend $?
+}
