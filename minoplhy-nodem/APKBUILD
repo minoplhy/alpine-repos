@@ -1,7 +1,7 @@
 # Contributor: Minoplhy <c@3qx.nl>
 maintainer="Minoplhy <c@3qx.nl>"
 pkgname=nodem
-pkgver=0.2.1
+pkgver=0.3.0
 pkgrel=0
 pkgdesc="NodeManager + ECH Manager: multi-tenant monitoring, DNS failover, and TLS 1.3 ECH key manager"
 url="https://github.com/minoplhy/nodem"
@@ -68,7 +68,7 @@ agent_openrc() {
 	amove etc/conf.d/$pkgname-agent
 }
 sha512sums="
-538ec53c84acb642f702da341552560a7696d988e4223ccd887291ebd86b1f0fce9e9a02069dc9eda7ca09fa190fdd48ae5d381eebda857aea6ec276d5c2c435  nodem-0.2.1.tar.gz
+b633431745d68dfdf5e2aaf0d6851266c6929ae58b227d91a8dca3cbd0e98e8112801fc0e7fa26c10ac5887562e58303f08b8c9a03dd66cf2fed1fe6ae4c780b  nodem-0.3.0.tar.gz
 8dae415b88e1233a79b3abddc360afb87a4864df99f1264e0bd342e2893713f14b7d1d526719670f09c2ab161a9808a712c1e2b06b4bf1336dcb82bc729b25d4  nodem.confd
 f8911b76c4f2923159f49cd19a27fabeeb0f4bb54d8221ff6f99b788a0be62e2e3ac39fbb2c7a9032837cfac0d3b98a11aea69be61e7e0e77a780c15b07f83a2  nodem.initd
 ca6b0bb9cdf1b63fe6deb06ee8afdc6212dff53d82a5e0e620cc230fed5a27d53550091b30def033f88192ce8f6c88ecd17a699c2443f7040448f76ff563f9be  nodem-agent.confd
