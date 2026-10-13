@@ -40,7 +40,9 @@ prepare() {
 }
 
 build() {
+    env -u RUSTFLAGS -u CARGO_ENCODED_RUSTFLAGS \
     make assets
+    
     make prebaked-build
 }
 
