@@ -1,6 +1,6 @@
 maintainer="Minoplhy <c@3qx.nl>"
 pkgname=opengist
-pkgver=1.15.2
+pkgver=1.15.3
 pkgrel=0
 pkgdesc="Self-hosted pastebin powered by Git, open-source alternative to Github Gist."
 url="https://opengist.io/"
@@ -38,6 +38,6 @@ package() {
 }
 
 sha512sums="
-60e6454cf2825b4e035c55d8704836f32276e7f5f0aa2748b3950c7b15ca21ca562535cdba921d18d08adf7b7993d086556eebfd3382d4c79e79f6dba8544433  opengist-1.15.2.tar.gz
+a33dcfd75bcfb8228ce9e42f07baa6d346fbacf5ec923ce1805f866aea434fbb07c99df7f091e8cf08555c08de74bd15d8f075f3cad067c92be130e92cfc66f0  opengist-1.15.3.tar.gz
 b939d6c014c588d5a7c3ee823e5d94711948dbd72ab6250bc6822369b11ff59fd87c320dfdb4efecbd9f70c376cbcdae3efd41b118e41976ed2e37ab3179812b  opengist.initd
 "
