@@ -1,0 +1,12 @@
+diff --git a/go.mod b/go.mod
+index 73d010c..45462a9 100644
+--- a/go.mod
++++ b/go.mod
+@@ -1,6 +1,6 @@
+ module github.com/thomiceli/opengist
+ 
+-go 1.27.2
++go 1.27
+ 
+ require (
+ 	github.com/Kunde21/markdownfmt/v3 v3.1.0
