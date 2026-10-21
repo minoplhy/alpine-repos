@@ -1,7 +1,7 @@
 # Contributor: Minoplhy <c@3qx.nl>
 maintainer="Minoplhy <c@3qx.nl>"
 pkgname=minoplhy-gitea
-pkgver=1.27.2
+pkgver=28.2.0
 pkgrel=0
 pkgdesc="I modify gitea"
 arch="all"
@@ -95,5 +95,5 @@ e5940a039c0318e80e9abc2da55b74cef02a65adfc7862bcc19defe11cbcf2b2a076af2c39483911
 d89f737ef04f16e5dbc570206095286dd1509e44a493ca61c3eac05c66e5b3dcb6bf428bfbed7fd1f61eee41e8217572f237be52e0b835e449c4cd58d3703a7c  icon.svg
 e5940a039c0318e80e9abc2da55b74cef02a65adfc7862bcc19defe11cbcf2b2a076af2c39483911358ed58e108f7bcd6240152102fe40e2ef1fdca2e815055a  logo.png
 fdebf42d5fa077fdcb743471ffed01fcfe311d6ba4b0d6a75aec0de5c41481d16fb86ee6eedb91edd9bf80df35d9ebade4034995689e2643bdb0a34716e255ee  logo.svg
-514eb8fa53a58b881ff3efa9ee2a885ebd3fcf2c7a07206aac525703865500c14dd9874c6b7bc9fa3b750449c083e249e6a710883aaa52a48dc4b4792c3bb47d  1.27.2-no-activity.fakepatch
+28ab4e29f1d043a8a043e0fdf7f5a979b1c963eb3dfbfb6dc76e2e88392b17e1680b90681ca013fff5658e4d938503dc0450e913b2051e8fd4af80b75487ae44  28.2.0-no-activity.fakepatch
 "
