@@ -1,6 +1,6 @@
 maintainer="fossdd <fossdd@pwned.life>"
 pkgname=minoplhy-anubis
-pkgver=1.28.1
+pkgver=1.28.2
 pkgrel=0
 pkgdesc="Block AI scrapers using a sha256 proof-of-work challenge"
 url="https://github.com/TecharoHQ/anubis"
@@ -56,7 +56,7 @@ package() {
 }
 
 sha512sums="
-99b14a4150d43110a6b0f6c20bb4704e21291254c589a59c47c274416ec9e4b7dfad1f73e125a8d4616d45dc8d241b73b10aea6ab0527d4024b8b76198025a49  anubis-1.28.1.tar.gz
+4a9b476cc2fd3f5125676793f5d2fb96de3ef6615eb75377499a5e7d7a859c17067f3593697da327bc1557f8eead4bcf310f90c3097f0f646b9d9a100dd90ff8  anubis-1.28.2.tar.gz
 e4909951c183bd4a7ff932fca5591a0d9aebd7aa569384a6c807d3ef9cfc00df2e0d7c872a2fa7ddbcfd60ba49f35140236ccb8d4c756ae9f81800fad22fcb21  anubis.initd
 1b1181a1e3e4260db17b40b0e8a557c257f5ab0dd502edc6143d5fee37f10d16578e9f400bf0aba4d237c3743c0d8cda541272c501e4373747c3a41f762382b6  happy.webp
 ec89122a0c8e09cc5c2f19a4e3dcb390a2bae69868063e0fcd4883aa597357bbad350b1657e8b7142febf2198a7f15169ac17a2137a343f4a4bcc3b9cc46fb22  pensive.webp
