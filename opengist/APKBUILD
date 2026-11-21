@@ -15,6 +15,7 @@ subpackages="
     "
 source="$pkgname-$pkgver.tar.gz::https://github.com/thomiceli/opengist/archive/refs/tags/v$pkgver.tar.gz
 	$pkgname.initd
+    patches/$pkgver-go-version.patch
     
     "
 options="net !check" # check: no test suite
@@ -40,4 +41,5 @@ package() {
 sha512sums="
 ac4a203182bdfeccd6075a7814e9f4aed7f3d6832b005458897255f0d191afd2bb28f6a1233eb19fdcff00c3f7e99210382bb87f645634c1c3075342704e75be  opengist-1.16.0.tar.gz
 b939d6c014c588d5a7c3ee823e5d94711948dbd72ab6250bc6822369b11ff59fd87c320dfdb4efecbd9f70c376cbcdae3efd41b118e41976ed2e37ab3179812b  opengist.initd
+d6c65d188939a2cb8d08e121024c1159c98ba2fa8fcf64d8cf82a4247799813341bc23537b06b77f72c983da4792876912ec2c6c772689fa42f378588e434a15  1.16.0-go-version.patch
 "
