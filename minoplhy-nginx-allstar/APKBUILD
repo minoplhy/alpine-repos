@@ -2,7 +2,7 @@
 maintainer="Minoplhy <c@3qx.nl>"
 pkgname=minoplhy-nginx-allstar
 pkgver=1.31.9
-pkgrel=0
+pkgrel=1
 pkgdesc="Nginx"
 url="https://github.com/nginx/nginx"
 arch="x86_64"
@@ -55,7 +55,7 @@ prepare() {
 }
 
 build() {
-    bash "$srcdir"/nginx-build.sh --lua --modsecurity --type=nginx --modsecurity-prefix="$builddir"/usr --lua-prefix="$builddir"/usr/share/lua/5.4 --luajit2-prefix="$builddir"/usr --ssl=openssl --builddir "$builddir" --source-folder="$srcdir"/nginx-release-"$pkgver" --openssl-version=4.0.2
+    bash "$srcdir"/nginx-build.sh --lua --modsecurity --type=nginx --modsecurity-prefix="$builddir"/usr --lua-prefix="$builddir"/usr/share/lua/5.4 --luajit2-prefix="$builddir"/usr --ssl=openssl --builddir "$builddir" --source-folder="$srcdir"/nginx-release-"$pkgver" --openssl-version=4.1.0
 }
 
 package() {
